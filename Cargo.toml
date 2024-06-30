@@ -1,0 +1,33 @@
+[package]
+name = "yolonif"
+version = "0.1.0"
+authors = ["makarovian <you@example.com>"]
+edition = "2018"
+build = "build.rs"
+
+[lib]
+name = "yolonif"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[profile.release]
+# Enable static linking for the release profile
+lto = true
+
+#[features]
+# default = []
+# # Disable the problematic modules
+#disabled_modules = ["alphamat", "cvv", "freetype", "hdf", "viz"]
+
+[dependencies]
+rustler = "0.33.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# tch = {version = "0.16.0", path = "/home/makarov/custom_libs/tch-rs"}
+# cv = {path="/home/makarov/custom_libs/opencv/cv/cv"}
+# opencv = {path="/home/makarov/custom_libs/opencv-rust", features = ["clang-runtime"]}
+opencv = { version = "0.92.0", features = ["clang-runtime", "imgproc", "highgui", "imgcodecs", "videoio", "features2d", "calib3d", "objdetect", "dnn", "xfeatures2d"],  default-features = false}
+# ffmpeg-next = "7.0.2"
+lazy_static = "1.4.0"
+# ffmpeg-wasi = "0.1.14"
+tokio = "1.38.0"
